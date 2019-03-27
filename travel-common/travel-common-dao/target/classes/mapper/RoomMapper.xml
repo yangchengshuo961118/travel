@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.RoomMapper">
+
+    <select id="getRoomById" resultType="com.zb.pojo.Room">
+        select
+                id as id,
+                roomName as roomName,
+                roomType as roomType,
+                roomSatatus as roomSatatus,
+                hotelId as hotelId
+        from room
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getRoomListByMap" resultType="com.zb.pojo.Room" parameterType="java.util.Map">
+        select
+                id as id,
+                roomName as roomName,
+                roomType as roomType,
+                roomSatatus as roomSatatus,
+                hotelId as hotelId
+        from room
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="roomName != null and roomName!=''">
+                    and roomName=#{roomName}
+                </if>
+                <if test="roomType != null and roomType!=''">
+                    and roomType=#{roomType}
+                </if>
+                <if test="roomSatatus != null and roomSatatus!=''">
+                    and roomSatatus=#{roomSatatus}
+                </if>
+                <if test="hotelId != null and hotelId!=''">
+                    and hotelId=#{hotelId}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getRoomCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from room
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="roomName != null and roomName!=''">
+                    and roomName=#{roomName}
+                </if>
+                <if test="roomType != null and roomType!=''">
+                    and roomType=#{roomType}
+                </if>
+                <if test="roomSatatus != null and roomSatatus!=''">
+                    and roomSatatus=#{roomSatatus}
+                </if>
+                <if test="hotelId != null and hotelId!=''">
+                    and hotelId=#{hotelId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertRoom" parameterType="com.zb.pojo.Room">
+        insert into room(
+                        roomName,
+                        roomType,
+                        roomSatatus,
+                        hotelId)
+        values(
+                     #{roomName},
+                     #{roomType},
+                     #{roomSatatus},
+                    #{hotelId})
+    </insert>
+
+    <update id="updateRoom" parameterType="com.zb.pojo.Room">
+        update room
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="roomName != null and roomName!=''">
+                            roomName=#{roomName},
+                        </if>
+                        <if test="roomType != null and roomType!=''">
+                            roomType=#{roomType},
+                        </if>
+                        <if test="roomSatatus != null and roomSatatus!=''">
+                            roomSatatus=#{roomSatatus},
+                        </if>
+                        <if test="hotelId != null and hotelId!=''">
+                            hotelId=#{hotelId}
+                        </if>
+        </trim>
+    </update>
+</mapper>

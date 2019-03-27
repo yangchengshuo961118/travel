@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.HotelMapper">
+
+    <select id="getHotelById" resultType="com.zb.pojo.Hotel">
+        select
+                id as id,
+                hotelName as hotelName,
+                hotelType as hotelType,
+                imageId as imageId,
+                hotelContext as hotelContext
+        from hotel
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getHotelListByMap" resultType="com.zb.pojo.Hotel" parameterType="java.util.Map">
+        select
+                id as id,
+                hotelName as hotelName,
+                hotelType as hotelType,
+                imageId as imageId,
+                hotelContext as hotelContext
+        from hotel
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="hotelName != null and hotelName!=''">
+                    and hotelName=#{hotelName}
+                </if>
+                <if test="hotelType != null and hotelType!=''">
+                    and hotelType=#{hotelType}
+                </if>
+                <if test="imageId != null and imageId!=''">
+                    and imageId=#{imageId}
+                </if>
+                <if test="hotelContext != null and hotelContext!=''">
+                    and hotelContext=#{hotelContext}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getHotelCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from hotel
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="hotelName != null and hotelName!=''">
+                    and hotelName=#{hotelName}
+                </if>
+                <if test="hotelType != null and hotelType!=''">
+                    and hotelType=#{hotelType}
+                </if>
+                <if test="imageId != null and imageId!=''">
+                    and imageId=#{imageId}
+                </if>
+                <if test="hotelContext != null and hotelContext!=''">
+                    and hotelContext=#{hotelContext}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertHotel" parameterType="com.zb.pojo.Hotel">
+        insert into hotel(
+                        hotelName,
+                        hotelType,
+                        imageId,
+                        hotelContext)
+        values(
+                     #{hotelName},
+                     #{hotelType},
+                     #{imageId},
+                    #{hotelContext})
+    </insert>
+
+    <update id="updateHotel" parameterType="com.zb.pojo.Hotel">
+        update hotel
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="hotelName != null and hotelName!=''">
+                            hotelName=#{hotelName},
+                        </if>
+                        <if test="hotelType != null and hotelType!=''">
+                            hotelType=#{hotelType},
+                        </if>
+                        <if test="imageId != null and imageId!=''">
+                            imageId=#{imageId},
+                        </if>
+                        <if test="hotelContext != null and hotelContext!=''">
+                            hotelContext=#{hotelContext}
+                        </if>
+        </trim>
+    </update>
+</mapper>

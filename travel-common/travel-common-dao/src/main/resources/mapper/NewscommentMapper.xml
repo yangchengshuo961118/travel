@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.NewscommentMapper">
+
+    <select id="getNewscommentById" resultType="com.zb.pojo.Newscomment">
+        select
+                ncid as ncid,
+                nauthor as nauthor,
+                ncontent as ncontent,
+                ncreatetime as ncreatetime,
+                ncsid as ncsid
+        from newscomment
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getNewscommentListByMap" resultType="com.zb.pojo.Newscomment" parameterType="java.util.Map">
+        select
+                ncid as ncid,
+                nauthor as nauthor,
+                ncontent as ncontent,
+                ncreatetime as ncreatetime,
+                ncsid as ncsid
+        from newscomment
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="ncid != null and ncid!=''">
+                    and ncid=#{ncid}
+                </if>
+                <if test="nauthor != null and nauthor!=''">
+                    and nauthor=#{nauthor}
+                </if>
+                <if test="ncontent != null and ncontent!=''">
+                    and ncontent=#{ncontent}
+                </if>
+                <if test="ncreatetime != null and ncreatetime!=''">
+                    and ncreatetime=#{ncreatetime}
+                </if>
+                <if test="ncsid != null and ncsid!=''">
+                    and ncsid=#{ncsid}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getNewscommentCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from newscomment
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="ncid != null and ncid!=''">
+                    and ncid=#{ncid}
+                </if>
+                <if test="nauthor != null and nauthor!=''">
+                    and nauthor=#{nauthor}
+                </if>
+                <if test="ncontent != null and ncontent!=''">
+                    and ncontent=#{ncontent}
+                </if>
+                <if test="ncreatetime != null and ncreatetime!=''">
+                    and ncreatetime=#{ncreatetime}
+                </if>
+                <if test="ncsid != null and ncsid!=''">
+                    and ncsid=#{ncsid}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertNewscomment" parameterType="com.zb.pojo.Newscomment">
+        insert into newscomment(
+                        ncid,
+                        nauthor,
+                        ncontent,
+                        ncreatetime,
+                        ncsid)
+        values(
+                     #{ncid},
+                     #{nauthor},
+                     #{ncontent},
+                     #{ncreatetime},
+                    #{ncsid})
+    </insert>
+
+    <update id="updateNewscomment" parameterType="com.zb.pojo.Newscomment">
+        update newscomment
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="ncid != null and ncid!=''">
+                            ncid=#{ncid},
+                        </if>
+                        <if test="nauthor != null and nauthor!=''">
+                            nauthor=#{nauthor},
+                        </if>
+                        <if test="ncontent != null and ncontent!=''">
+                            ncontent=#{ncontent},
+                        </if>
+                        <if test="ncreatetime != null and ncreatetime!=''">
+                            ncreatetime=#{ncreatetime},
+                        </if>
+                        <if test="ncsid != null and ncsid!=''">
+                            ncsid=#{ncsid}
+                        </if>
+        </trim>
+    </update>
+</mapper>

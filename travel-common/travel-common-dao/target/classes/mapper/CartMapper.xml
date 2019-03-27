@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.CartMapper">
+
+    <select id="getCartById" resultType="com.zb.pojo.Cart">
+        select
+                id as id,
+                sid as sid,
+                userid as userid,
+                createtime as createtime,
+                count as count
+        from cart
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCartListByMap" resultType="com.zb.pojo.Cart" parameterType="java.util.Map">
+        select
+                id as id,
+                sid as sid,
+                userid as userid,
+                createtime as createtime,
+                count as count
+        from cart
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="sid != null and sid!=''">
+                    and sid=#{sid}
+                </if>
+                <if test="userid != null and userid!=''">
+                    and userid=#{userid}
+                </if>
+                <if test="createtime != null and createtime!=''">
+                    and createtime=#{createtime}
+                </if>
+                <if test="count != null and count!=''">
+                    and count=#{count}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCartCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from cart
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="sid != null and sid!=''">
+                    and sid=#{sid}
+                </if>
+                <if test="userid != null and userid!=''">
+                    and userid=#{userid}
+                </if>
+                <if test="createtime != null and createtime!=''">
+                    and createtime=#{createtime}
+                </if>
+                <if test="count != null and count!=''">
+                    and count=#{count}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCart" parameterType="com.zb.pojo.Cart">
+        insert into cart(
+                        sid,
+                        userid,
+                        createtime,
+                        count)
+        values(
+                     #{sid},
+                     #{userid},
+                     #{createtime},
+                    #{count})
+    </insert>
+
+    <update id="updateCart" parameterType="com.zb.pojo.Cart">
+        update cart
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="sid != null and sid!=''">
+                            sid=#{sid},
+                        </if>
+                        <if test="userid != null and userid!=''">
+                            userid=#{userid},
+                        </if>
+                        <if test="createtime != null and createtime!=''">
+                            createtime=#{createtime},
+                        </if>
+                        <if test="count != null and count!=''">
+                            count=#{count}
+                        </if>
+        </trim>
+    </update>
+</mapper>

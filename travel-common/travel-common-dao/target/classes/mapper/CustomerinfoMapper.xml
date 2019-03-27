@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.CustomerinfoMapper">
+
+    <select id="getCustomerinfoById" resultType="com.zb.pojo.Customerinfo">
+        select
+                id as id,
+                name as name,
+                phone as phone,
+                identitCard as identitCard,
+                roomId as roomId,
+                checkRoom as checkRoom,
+                checkinDate as checkinDate,
+                roomRate as roomRate,
+                cashPledge as cashPledge,
+                checkoutDate as checkoutDate,
+                remark as remark
+        from customerinfo
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCustomerinfoListByMap" resultType="com.zb.pojo.Customerinfo" parameterType="java.util.Map">
+        select
+                id as id,
+                name as name,
+                phone as phone,
+                identitCard as identitCard,
+                roomId as roomId,
+                checkRoom as checkRoom,
+                checkinDate as checkinDate,
+                roomRate as roomRate,
+                cashPledge as cashPledge,
+                checkoutDate as checkoutDate,
+                remark as remark
+        from customerinfo
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+                <if test="phone != null and phone!=''">
+                    and phone=#{phone}
+                </if>
+                <if test="identitCard != null and identitCard!=''">
+                    and identitCard=#{identitCard}
+                </if>
+                <if test="roomId != null and roomId!=''">
+                    and roomId=#{roomId}
+                </if>
+                <if test="checkRoom != null and checkRoom!=''">
+                    and checkRoom=#{checkRoom}
+                </if>
+                <if test="checkinDate != null and checkinDate!=''">
+                    and checkinDate=#{checkinDate}
+                </if>
+                <if test="roomRate != null and roomRate!=''">
+                    and roomRate=#{roomRate}
+                </if>
+                <if test="cashPledge != null and cashPledge!=''">
+                    and cashPledge=#{cashPledge}
+                </if>
+                <if test="checkoutDate != null and checkoutDate!=''">
+                    and checkoutDate=#{checkoutDate}
+                </if>
+                <if test="remark != null and remark!=''">
+                    and remark=#{remark}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCustomerinfoCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from customerinfo
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+                <if test="phone != null and phone!=''">
+                    and phone=#{phone}
+                </if>
+                <if test="identitCard != null and identitCard!=''">
+                    and identitCard=#{identitCard}
+                </if>
+                <if test="roomId != null and roomId!=''">
+                    and roomId=#{roomId}
+                </if>
+                <if test="checkRoom != null and checkRoom!=''">
+                    and checkRoom=#{checkRoom}
+                </if>
+                <if test="checkinDate != null and checkinDate!=''">
+                    and checkinDate=#{checkinDate}
+                </if>
+                <if test="roomRate != null and roomRate!=''">
+                    and roomRate=#{roomRate}
+                </if>
+                <if test="cashPledge != null and cashPledge!=''">
+                    and cashPledge=#{cashPledge}
+                </if>
+                <if test="checkoutDate != null and checkoutDate!=''">
+                    and checkoutDate=#{checkoutDate}
+                </if>
+                <if test="remark != null and remark!=''">
+                    and remark=#{remark}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCustomerinfo" parameterType="com.zb.pojo.Customerinfo">
+        insert into customerinfo(
+                        name,
+                        phone,
+                        identitCard,
+                        roomId,
+                        checkRoom,
+                        checkinDate,
+                        roomRate,
+                        cashPledge,
+                        checkoutDate,
+                        remark)
+        values(
+                     #{name},
+                     #{phone},
+                     #{identitCard},
+                     #{roomId},
+                     #{checkRoom},
+                     #{checkinDate},
+                     #{roomRate},
+                     #{cashPledge},
+                     #{checkoutDate},
+                    #{remark})
+    </insert>
+
+    <update id="updateCustomerinfo" parameterType="com.zb.pojo.Customerinfo">
+        update customerinfo
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="name != null and name!=''">
+                            name=#{name},
+                        </if>
+                        <if test="phone != null and phone!=''">
+                            phone=#{phone},
+                        </if>
+                        <if test="identitCard != null and identitCard!=''">
+                            identitCard=#{identitCard},
+                        </if>
+                        <if test="roomId != null and roomId!=''">
+                            roomId=#{roomId},
+                        </if>
+                        <if test="checkRoom != null and checkRoom!=''">
+                            checkRoom=#{checkRoom},
+                        </if>
+                        <if test="checkinDate != null and checkinDate!=''">
+                            checkinDate=#{checkinDate},
+                        </if>
+                        <if test="roomRate != null and roomRate!=''">
+                            roomRate=#{roomRate},
+                        </if>
+                        <if test="cashPledge != null and cashPledge!=''">
+                            cashPledge=#{cashPledge},
+                        </if>
+                        <if test="checkoutDate != null and checkoutDate!=''">
+                            checkoutDate=#{checkoutDate},
+                        </if>
+                        <if test="remark != null and remark!=''">
+                            remark=#{remark}
+                        </if>
+        </trim>
+    </update>
+</mapper>

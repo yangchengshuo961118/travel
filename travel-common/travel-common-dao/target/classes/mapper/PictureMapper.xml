@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.PictureMapper">
+
+    <select id="getPictureById" resultType="com.zb.pojo.Picture">
+        select
+                pId as pId,
+                pictures as pictures
+        from picture
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getPictureListByMap" resultType="com.zb.pojo.Picture" parameterType="java.util.Map">
+        select
+                pId as pId,
+                pictures as pictures
+        from picture
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="pId != null and pId!=''">
+                    and pId=#{pId}
+                </if>
+                <if test="pictures != null and pictures!=''">
+                    and pictures=#{pictures}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getPictureCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from picture
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="pId != null and pId!=''">
+                    and pId=#{pId}
+                </if>
+                <if test="pictures != null and pictures!=''">
+                    and pictures=#{pictures}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertPicture" parameterType="com.zb.pojo.Picture">
+        insert into picture(
+                        pId,
+                        pictures)
+        values(
+                     #{pId},
+                    #{pictures})
+    </insert>
+
+    <update id="updatePicture" parameterType="com.zb.pojo.Picture">
+        update picture
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="pId != null and pId!=''">
+                            pId=#{pId},
+                        </if>
+                        <if test="pictures != null and pictures!=''">
+                            pictures=#{pictures}
+                        </if>
+        </trim>
+    </update>
+</mapper>

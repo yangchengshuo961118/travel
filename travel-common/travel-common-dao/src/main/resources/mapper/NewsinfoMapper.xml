@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.NewsinfoMapper">
+
+    <select id="getNewsinfoById" resultType="com.zb.pojo.Newsinfo">
+        select
+                nsid as nsid,
+                title as title,
+                summary as summary,
+                content as content,
+                createtime as createtime,
+                imgsrc as imgsrc,
+                ntid as ntid
+        from newsinfo
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getNewsinfoListByMap" resultType="com.zb.pojo.Newsinfo" parameterType="java.util.Map">
+        select
+                nsid as nsid,
+                title as title,
+                summary as summary,
+                content as content,
+                createtime as createtime,
+                imgsrc as imgsrc,
+                ntid as ntid
+        from newsinfo
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="nsid != null and nsid!=''">
+                    and nsid=#{nsid}
+                </if>
+                <if test="title != null and title!=''">
+                    and title=#{title}
+                </if>
+                <if test="summary != null and summary!=''">
+                    and summary=#{summary}
+                </if>
+                <if test="content != null and content!=''">
+                    and content=#{content}
+                </if>
+                <if test="createtime != null and createtime!=''">
+                    and createtime=#{createtime}
+                </if>
+                <if test="imgsrc != null and imgsrc!=''">
+                    and imgsrc=#{imgsrc}
+                </if>
+                <if test="ntid != null and ntid!=''">
+                    and ntid=#{ntid}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getNewsinfoCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from newsinfo
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="nsid != null and nsid!=''">
+                    and nsid=#{nsid}
+                </if>
+                <if test="title != null and title!=''">
+                    and title=#{title}
+                </if>
+                <if test="summary != null and summary!=''">
+                    and summary=#{summary}
+                </if>
+                <if test="content != null and content!=''">
+                    and content=#{content}
+                </if>
+                <if test="createtime != null and createtime!=''">
+                    and createtime=#{createtime}
+                </if>
+                <if test="imgsrc != null and imgsrc!=''">
+                    and imgsrc=#{imgsrc}
+                </if>
+                <if test="ntid != null and ntid!=''">
+                    and ntid=#{ntid}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertNewsinfo" parameterType="com.zb.pojo.Newsinfo">
+        insert into newsinfo(
+                        nsid,
+                        title,
+                        summary,
+                        content,
+                        createtime,
+                        imgsrc,
+                        ntid)
+        values(
+                     #{nsid},
+                     #{title},
+                     #{summary},
+                     #{content},
+                     #{createtime},
+                     #{imgsrc},
+                    #{ntid})
+    </insert>
+
+    <update id="updateNewsinfo" parameterType="com.zb.pojo.Newsinfo">
+        update newsinfo
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="nsid != null and nsid!=''">
+                            nsid=#{nsid},
+                        </if>
+                        <if test="title != null and title!=''">
+                            title=#{title},
+                        </if>
+                        <if test="summary != null and summary!=''">
+                            summary=#{summary},
+                        </if>
+                        <if test="content != null and content!=''">
+                            content=#{content},
+                        </if>
+                        <if test="createtime != null and createtime!=''">
+                            createtime=#{createtime},
+                        </if>
+                        <if test="imgsrc != null and imgsrc!=''">
+                            imgsrc=#{imgsrc},
+                        </if>
+                        <if test="ntid != null and ntid!=''">
+                            ntid=#{ntid}
+                        </if>
+        </trim>
+    </update>
+</mapper>

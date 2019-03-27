@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.ImagesMapper">
+
+    <select id="getImagesById" resultType="com.zb.pojo.Images">
+        select
+                id as id,
+                imagePath as imagePath
+        from images
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getImagesListByMap" resultType="com.zb.pojo.Images" parameterType="java.util.Map">
+        select
+                id as id,
+                imagePath as imagePath
+        from images
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="imagePath != null and imagePath!=''">
+                    and imagePath=#{imagePath}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getImagesCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from images
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="imagePath != null and imagePath!=''">
+                    and imagePath=#{imagePath}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertImages" parameterType="com.zb.pojo.Images">
+        insert into images(
+                        imagePath)
+        values(
+                    #{imagePath})
+    </insert>
+
+    <update id="updateImages" parameterType="com.zb.pojo.Images">
+        update images
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="imagePath != null and imagePath!=''">
+                            imagePath=#{imagePath}
+                        </if>
+        </trim>
+    </update>
+</mapper>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.UserinfoMapper">
+
+    <select id="getUserinfoById" resultType="com.zb.pojo.Userinfo">
+        select
+                userId as userId,
+                phone as phone,
+                password as password,
+                userName as userName,
+                gender as gender,
+                address as address,
+                birth as birth,
+                signature as signature,
+                photo as photo,
+                integral as integral
+        from userinfo
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getUserinfoListByMap" resultType="com.zb.pojo.Userinfo" parameterType="java.util.Map">
+        select
+                userId as userId,
+                phone as phone,
+                password as password,
+                userName as userName,
+                gender as gender,
+                address as address,
+                birth as birth,
+                signature as signature,
+                photo as photo,
+                integral as integral
+        from userinfo
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="userId != null and userId!=''">
+                    and userId=#{userId}
+                </if>
+                <if test="phone != null and phone!=''">
+                    and phone=#{phone}
+                </if>
+                <if test="password != null and password!=''">
+                    and password=#{password}
+                </if>
+                <if test="userName != null and userName!=''">
+                    and userName=#{userName}
+                </if>
+                <if test="gender != null and gender!=''">
+                    and gender=#{gender}
+                </if>
+                <if test="address != null and address!=''">
+                    and address=#{address}
+                </if>
+                <if test="birth != null and birth!=''">
+                    and birth=#{birth}
+                </if>
+                <if test="signature != null and signature!=''">
+                    and signature=#{signature}
+                </if>
+                <if test="photo != null and photo!=''">
+                    and photo=#{photo}
+                </if>
+                <if test="integral != null and integral!=''">
+                    and integral=#{integral}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getUserinfoCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from userinfo
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="userId != null and userId!=''">
+                    and userId=#{userId}
+                </if>
+                <if test="phone != null and phone!=''">
+                    and phone=#{phone}
+                </if>
+                <if test="password != null and password!=''">
+                    and password=#{password}
+                </if>
+                <if test="userName != null and userName!=''">
+                    and userName=#{userName}
+                </if>
+                <if test="gender != null and gender!=''">
+                    and gender=#{gender}
+                </if>
+                <if test="address != null and address!=''">
+                    and address=#{address}
+                </if>
+                <if test="birth != null and birth!=''">
+                    and birth=#{birth}
+                </if>
+                <if test="signature != null and signature!=''">
+                    and signature=#{signature}
+                </if>
+                <if test="photo != null and photo!=''">
+                    and photo=#{photo}
+                </if>
+                <if test="integral != null and integral!=''">
+                    and integral=#{integral}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertUserinfo" parameterType="com.zb.pojo.Userinfo">
+        insert into userinfo(
+                        userId,
+                        phone,
+                        password,
+                        userName,
+                        gender,
+                        address,
+                        birth,
+                        signature,
+                        photo,
+                        integral)
+        values(
+                     #{userId},
+                     #{phone},
+                     #{password},
+                     #{userName},
+                     #{gender},
+                     #{address},
+                     #{birth},
+                     #{signature},
+                     #{photo},
+                    #{integral})
+    </insert>
+
+    <update id="updateUserinfo" parameterType="com.zb.pojo.Userinfo">
+        update userinfo
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="userId != null and userId!=''">
+                            userId=#{userId},
+                        </if>
+                        <if test="phone != null and phone!=''">
+                            phone=#{phone},
+                        </if>
+                        <if test="password != null and password!=''">
+                            password=#{password},
+                        </if>
+                        <if test="userName != null and userName!=''">
+                            userName=#{userName},
+                        </if>
+                        <if test="gender != null and gender!=''">
+                            gender=#{gender},
+                        </if>
+                        <if test="address != null and address!=''">
+                            address=#{address},
+                        </if>
+                        <if test="birth != null and birth!=''">
+                            birth=#{birth},
+                        </if>
+                        <if test="signature != null and signature!=''">
+                            signature=#{signature},
+                        </if>
+                        <if test="photo != null and photo!=''">
+                            photo=#{photo},
+                        </if>
+                        <if test="integral != null and integral!=''">
+                            integral=#{integral}
+                        </if>
+        </trim>
+    </update>
+</mapper>

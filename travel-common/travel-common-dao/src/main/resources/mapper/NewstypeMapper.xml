@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.NewstypeMapper">
+
+    <select id="getNewstypeById" resultType="com.zb.pojo.Newstype">
+        select
+                nid as nid,
+                name as name
+        from newstype
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getNewstypeListByMap" resultType="com.zb.pojo.Newstype" parameterType="java.util.Map">
+        select
+                nid as nid,
+                name as name
+        from newstype
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="nid != null and nid!=''">
+                    and nid=#{nid}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getNewstypeCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from newstype
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="nid != null and nid!=''">
+                    and nid=#{nid}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertNewstype" parameterType="com.zb.pojo.Newstype">
+        insert into newstype(
+                        nid,
+                        name)
+        values(
+                     #{nid},
+                    #{name})
+    </insert>
+
+    <update id="updateNewstype" parameterType="com.zb.pojo.Newstype">
+        update newstype
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="nid != null and nid!=''">
+                            nid=#{nid},
+                        </if>
+                        <if test="name != null and name!=''">
+                            name=#{name}
+                        </if>
+        </trim>
+    </update>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.ReserveMapper">
+
+    <select id="getReserveById" resultType="com.zb.pojo.Reserve">
+        select
+                id as id,
+                name as name,
+                days as days,
+                guest as guest,
+                roomNumber as roomNumber,
+                roomType as roomType,
+                checkinDate as checkinDate,
+                checkoutDate as checkoutDate,
+                roomRate as roomRate,
+                cashPledge as cashPledge,
+                remark as remark
+        from reserve
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getReserveListByMap" resultType="com.zb.pojo.Reserve" parameterType="java.util.Map">
+        select
+                id as id,
+                name as name,
+                days as days,
+                guest as guest,
+                roomNumber as roomNumber,
+                roomType as roomType,
+                checkinDate as checkinDate,
+                checkoutDate as checkoutDate,
+                roomRate as roomRate,
+                cashPledge as cashPledge,
+                remark as remark
+        from reserve
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+                <if test="days != null and days!=''">
+                    and days=#{days}
+                </if>
+                <if test="guest != null and guest!=''">
+                    and guest=#{guest}
+                </if>
+                <if test="roomNumber != null and roomNumber!=''">
+                    and roomNumber=#{roomNumber}
+                </if>
+                <if test="roomType != null and roomType!=''">
+                    and roomType=#{roomType}
+                </if>
+                <if test="checkinDate != null and checkinDate!=''">
+                    and checkinDate=#{checkinDate}
+                </if>
+                <if test="checkoutDate != null and checkoutDate!=''">
+                    and checkoutDate=#{checkoutDate}
+                </if>
+                <if test="roomRate != null and roomRate!=''">
+                    and roomRate=#{roomRate}
+                </if>
+                <if test="cashPledge != null and cashPledge!=''">
+                    and cashPledge=#{cashPledge}
+                </if>
+                <if test="remark != null and remark!=''">
+                    and remark=#{remark}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getReserveCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from reserve
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="name != null and name!=''">
+                    and name=#{name}
+                </if>
+                <if test="days != null and days!=''">
+                    and days=#{days}
+                </if>
+                <if test="guest != null and guest!=''">
+                    and guest=#{guest}
+                </if>
+                <if test="roomNumber != null and roomNumber!=''">
+                    and roomNumber=#{roomNumber}
+                </if>
+                <if test="roomType != null and roomType!=''">
+                    and roomType=#{roomType}
+                </if>
+                <if test="checkinDate != null and checkinDate!=''">
+                    and checkinDate=#{checkinDate}
+                </if>
+                <if test="checkoutDate != null and checkoutDate!=''">
+                    and checkoutDate=#{checkoutDate}
+                </if>
+                <if test="roomRate != null and roomRate!=''">
+                    and roomRate=#{roomRate}
+                </if>
+                <if test="cashPledge != null and cashPledge!=''">
+                    and cashPledge=#{cashPledge}
+                </if>
+                <if test="remark != null and remark!=''">
+                    and remark=#{remark}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertReserve" parameterType="com.zb.pojo.Reserve">
+        insert into reserve(
+                        name,
+                        days,
+                        guest,
+                        roomNumber,
+                        roomType,
+                        checkinDate,
+                        checkoutDate,
+                        roomRate,
+                        cashPledge,
+                        remark)
+        values(
+                     #{name},
+                     #{days},
+                     #{guest},
+                     #{roomNumber},
+                     #{roomType},
+                     #{checkinDate},
+                     #{checkoutDate},
+                     #{roomRate},
+                     #{cashPledge},
+                    #{remark})
+    </insert>
+
+    <update id="updateReserve" parameterType="com.zb.pojo.Reserve">
+        update reserve
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="name != null and name!=''">
+                            name=#{name},
+                        </if>
+                        <if test="days != null and days!=''">
+                            days=#{days},
+                        </if>
+                        <if test="guest != null and guest!=''">
+                            guest=#{guest},
+                        </if>
+                        <if test="roomNumber != null and roomNumber!=''">
+                            roomNumber=#{roomNumber},
+                        </if>
+                        <if test="roomType != null and roomType!=''">
+                            roomType=#{roomType},
+                        </if>
+                        <if test="checkinDate != null and checkinDate!=''">
+                            checkinDate=#{checkinDate},
+                        </if>
+                        <if test="checkoutDate != null and checkoutDate!=''">
+                            checkoutDate=#{checkoutDate},
+                        </if>
+                        <if test="roomRate != null and roomRate!=''">
+                            roomRate=#{roomRate},
+                        </if>
+                        <if test="cashPledge != null and cashPledge!=''">
+                            cashPledge=#{cashPledge},
+                        </if>
+                        <if test="remark != null and remark!=''">
+                            remark=#{remark}
+                        </if>
+        </trim>
+    </update>
+</mapper>

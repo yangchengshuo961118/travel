@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.CollectMapper">
+
+    <select id="getCollectById" resultType="com.zb.pojo.Collect">
+        select
+                collectId as collectId,
+                uId as uId,
+                tnId as tnId
+        from collect
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCollectListByMap" resultType="com.zb.pojo.Collect" parameterType="java.util.Map">
+        select
+                collectId as collectId,
+                uId as uId,
+                tnId as tnId
+        from collect
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="collectId != null and collectId!=''">
+                    and collectId=#{collectId}
+                </if>
+                <if test="uId != null and uId!=''">
+                    and uId=#{uId}
+                </if>
+                <if test="tnId != null and tnId!=''">
+                    and tnId=#{tnId}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCollectCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from collect
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="collectId != null and collectId!=''">
+                    and collectId=#{collectId}
+                </if>
+                <if test="uId != null and uId!=''">
+                    and uId=#{uId}
+                </if>
+                <if test="tnId != null and tnId!=''">
+                    and tnId=#{tnId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCollect" parameterType="com.zb.pojo.Collect">
+        insert into collect(
+                        collectId,
+                        uId,
+                        tnId)
+        values(
+                     #{collectId},
+                     #{uId},
+                    #{tnId})
+    </insert>
+
+    <update id="updateCollect" parameterType="com.zb.pojo.Collect">
+        update collect
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="collectId != null and collectId!=''">
+                            collectId=#{collectId},
+                        </if>
+                        <if test="uId != null and uId!=''">
+                            uId=#{uId},
+                        </if>
+                        <if test="tnId != null and tnId!=''">
+                            tnId=#{tnId}
+                        </if>
+        </trim>
+    </update>
+</mapper>

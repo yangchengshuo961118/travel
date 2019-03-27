@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.RolesMapper">
+
+    <select id="getRolesById" resultType="com.zb.pojo.Roles">
+        select
+                rid as rid,
+                rname as rname
+        from roles
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getRolesListByMap" resultType="com.zb.pojo.Roles" parameterType="java.util.Map">
+        select
+                rid as rid,
+                rname as rname
+        from roles
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="rid != null and rid!=''">
+                    and rid=#{rid}
+                </if>
+                <if test="rname != null and rname!=''">
+                    and rname=#{rname}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getRolesCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from roles
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="rid != null and rid!=''">
+                    and rid=#{rid}
+                </if>
+                <if test="rname != null and rname!=''">
+                    and rname=#{rname}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertRoles" parameterType="com.zb.pojo.Roles">
+        insert into roles(
+                        rid,
+                        rname)
+        values(
+                     #{rid},
+                    #{rname})
+    </insert>
+
+    <update id="updateRoles" parameterType="com.zb.pojo.Roles">
+        update roles
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="rid != null and rid!=''">
+                            rid=#{rid},
+                        </if>
+                        <if test="rname != null and rname!=''">
+                            rname=#{rname}
+                        </if>
+        </trim>
+    </update>
+</mapper>

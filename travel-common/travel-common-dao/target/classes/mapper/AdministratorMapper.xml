@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.AdministratorMapper">
+
+    <select id="getAdministratorById" resultType="com.zb.pojo.Administrator">
+        select
+                aid as aid,
+                aname as aname,
+                apwd as apwd,
+                arid as arid
+        from administrator
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getAdministratorListByMap" resultType="com.zb.pojo.Administrator" parameterType="java.util.Map">
+        select
+                aid as aid,
+                aname as aname,
+                apwd as apwd,
+                arid as arid
+        from administrator
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="aid != null and aid!=''">
+                    and aid=#{aid}
+                </if>
+                <if test="aname != null and aname!=''">
+                    and aname=#{aname}
+                </if>
+                <if test="apwd != null and apwd!=''">
+                    and apwd=#{apwd}
+                </if>
+                <if test="arid != null and arid!=''">
+                    and arid=#{arid}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getAdministratorCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from administrator
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="aid != null and aid!=''">
+                    and aid=#{aid}
+                </if>
+                <if test="aname != null and aname!=''">
+                    and aname=#{aname}
+                </if>
+                <if test="apwd != null and apwd!=''">
+                    and apwd=#{apwd}
+                </if>
+                <if test="arid != null and arid!=''">
+                    and arid=#{arid}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertAdministrator" parameterType="com.zb.pojo.Administrator">
+        insert into administrator(
+                        aid,
+                        aname,
+                        apwd,
+                        arid)
+        values(
+                     #{aid},
+                     #{aname},
+                     #{apwd},
+                    #{arid})
+    </insert>
+
+    <update id="updateAdministrator" parameterType="com.zb.pojo.Administrator">
+        update administrator
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="aid != null and aid!=''">
+                            aid=#{aid},
+                        </if>
+                        <if test="aname != null and aname!=''">
+                            aname=#{aname},
+                        </if>
+                        <if test="apwd != null and apwd!=''">
+                            apwd=#{apwd},
+                        </if>
+                        <if test="arid != null and arid!=''">
+                            arid=#{arid}
+                        </if>
+        </trim>
+    </update>
+</mapper>

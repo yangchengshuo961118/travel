@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.ViewMapper">
+
+    <select id="getViewById" resultType="com.zb.pojo.View">
+        select
+                vid as vid,
+                vname as vname,
+                vimage as vimage,
+                vprice as vprice,
+                vtitle as vtitle,
+                vcontent as vcontent,
+                vaddress as vaddress,
+                vtelephone as vtelephone
+        from view
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getViewListByMap" resultType="com.zb.pojo.View" parameterType="java.util.Map">
+        select
+                vid as vid,
+                vname as vname,
+                vimage as vimage,
+                vprice as vprice,
+                vtitle as vtitle,
+                vcontent as vcontent,
+                vaddress as vaddress,
+                vtelephone as vtelephone
+        from view
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="vid != null and vid!=''">
+                    and vid=#{vid}
+                </if>
+                <if test="vname != null and vname!=''">
+                    and vname=#{vname}
+                </if>
+                <if test="vimage != null and vimage!=''">
+                    and vimage=#{vimage}
+                </if>
+                <if test="vprice != null and vprice!=''">
+                    and vprice=#{vprice}
+                </if>
+                <if test="vtitle != null and vtitle!=''">
+                    and vtitle=#{vtitle}
+                </if>
+                <if test="vcontent != null and vcontent!=''">
+                    and vcontent=#{vcontent}
+                </if>
+                <if test="vaddress != null and vaddress!=''">
+                    and vaddress=#{vaddress}
+                </if>
+                <if test="vtelephone != null and vtelephone!=''">
+                    and vtelephone=#{vtelephone}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getViewCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from view
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="vid != null and vid!=''">
+                    and vid=#{vid}
+                </if>
+                <if test="vname != null and vname!=''">
+                    and vname=#{vname}
+                </if>
+                <if test="vimage != null and vimage!=''">
+                    and vimage=#{vimage}
+                </if>
+                <if test="vprice != null and vprice!=''">
+                    and vprice=#{vprice}
+                </if>
+                <if test="vtitle != null and vtitle!=''">
+                    and vtitle=#{vtitle}
+                </if>
+                <if test="vcontent != null and vcontent!=''">
+                    and vcontent=#{vcontent}
+                </if>
+                <if test="vaddress != null and vaddress!=''">
+                    and vaddress=#{vaddress}
+                </if>
+                <if test="vtelephone != null and vtelephone!=''">
+                    and vtelephone=#{vtelephone}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertView" parameterType="com.zb.pojo.View">
+        insert into view(
+                        vid,
+                        vname,
+                        vimage,
+                        vprice,
+                        vtitle,
+                        vcontent,
+                        vaddress,
+                        vtelephone)
+        values(
+                     #{vid},
+                     #{vname},
+                     #{vimage},
+                     #{vprice},
+                     #{vtitle},
+                     #{vcontent},
+                     #{vaddress},
+                    #{vtelephone})
+    </insert>
+
+    <update id="updateView" parameterType="com.zb.pojo.View">
+        update view
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="vid != null and vid!=''">
+                            vid=#{vid},
+                        </if>
+                        <if test="vname != null and vname!=''">
+                            vname=#{vname},
+                        </if>
+                        <if test="vimage != null and vimage!=''">
+                            vimage=#{vimage},
+                        </if>
+                        <if test="vprice != null and vprice!=''">
+                            vprice=#{vprice},
+                        </if>
+                        <if test="vtitle != null and vtitle!=''">
+                            vtitle=#{vtitle},
+                        </if>
+                        <if test="vcontent != null and vcontent!=''">
+                            vcontent=#{vcontent},
+                        </if>
+                        <if test="vaddress != null and vaddress!=''">
+                            vaddress=#{vaddress},
+                        </if>
+                        <if test="vtelephone != null and vtelephone!=''">
+                            vtelephone=#{vtelephone}
+                        </if>
+        </trim>
+    </update>
+</mapper>

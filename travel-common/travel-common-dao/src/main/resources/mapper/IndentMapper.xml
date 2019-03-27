@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.IndentMapper">
+
+    <select id="getIndentById" resultType="com.zb.pojo.Indent">
+        select
+                id as id,
+                inum as inum,
+                iconsignee as iconsignee,
+                iphone as iphone,
+                idate as idate,
+                iuid as iuid,
+                ivid as ivid,
+                iamount as iamount,
+                iorderNo as iorderNo
+        from indent
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getIndentListByMap" resultType="com.zb.pojo.Indent" parameterType="java.util.Map">
+        select
+                id as id,
+                inum as inum,
+                iconsignee as iconsignee,
+                iphone as iphone,
+                idate as idate,
+                iuid as iuid,
+                ivid as ivid,
+                iamount as iamount,
+                iorderNo as iorderNo
+        from indent
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="inum != null and inum!=''">
+                    and inum=#{inum}
+                </if>
+                <if test="iconsignee != null and iconsignee!=''">
+                    and iconsignee=#{iconsignee}
+                </if>
+                <if test="iphone != null and iphone!=''">
+                    and iphone=#{iphone}
+                </if>
+                <if test="idate != null and idate!=''">
+                    and idate=#{idate}
+                </if>
+                <if test="iuid != null and iuid!=''">
+                    and iuid=#{iuid}
+                </if>
+                <if test="ivid != null and ivid!=''">
+                    and ivid=#{ivid}
+                </if>
+                <if test="iamount != null and iamount!=''">
+                    and iamount=#{iamount}
+                </if>
+                <if test="iorderNo != null and iorderNo!=''">
+                    and iorderNo=#{iorderNo}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getIndentCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from indent
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="inum != null and inum!=''">
+                    and inum=#{inum}
+                </if>
+                <if test="iconsignee != null and iconsignee!=''">
+                    and iconsignee=#{iconsignee}
+                </if>
+                <if test="iphone != null and iphone!=''">
+                    and iphone=#{iphone}
+                </if>
+                <if test="idate != null and idate!=''">
+                    and idate=#{idate}
+                </if>
+                <if test="iuid != null and iuid!=''">
+                    and iuid=#{iuid}
+                </if>
+                <if test="ivid != null and ivid!=''">
+                    and ivid=#{ivid}
+                </if>
+                <if test="iamount != null and iamount!=''">
+                    and iamount=#{iamount}
+                </if>
+                <if test="iorderNo != null and iorderNo!=''">
+                    and iorderNo=#{iorderNo}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertIndent" parameterType="com.zb.pojo.Indent">
+        insert into indent(
+                        inum,
+                        iconsignee,
+                        iphone,
+                        idate,
+                        iuid,
+                        ivid,
+                        iamount,
+                        iorderNo)
+        values(
+                     #{inum},
+                     #{iconsignee},
+                     #{iphone},
+                     #{idate},
+                     #{iuid},
+                     #{ivid},
+                     #{iamount},
+                    #{iorderNo})
+    </insert>
+
+    <update id="updateIndent" parameterType="com.zb.pojo.Indent">
+        update indent
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="inum != null and inum!=''">
+                            inum=#{inum},
+                        </if>
+                        <if test="iconsignee != null and iconsignee!=''">
+                            iconsignee=#{iconsignee},
+                        </if>
+                        <if test="iphone != null and iphone!=''">
+                            iphone=#{iphone},
+                        </if>
+                        <if test="idate != null and idate!=''">
+                            idate=#{idate},
+                        </if>
+                        <if test="iuid != null and iuid!=''">
+                            iuid=#{iuid},
+                        </if>
+                        <if test="ivid != null and ivid!=''">
+                            ivid=#{ivid},
+                        </if>
+                        <if test="iamount != null and iamount!=''">
+                            iamount=#{iamount},
+                        </if>
+                        <if test="iorderNo != null and iorderNo!=''">
+                            iorderNo=#{iorderNo}
+                        </if>
+        </trim>
+    </update>
+</mapper>

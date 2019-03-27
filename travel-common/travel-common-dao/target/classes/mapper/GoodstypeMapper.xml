@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.GoodstypeMapper">
+
+    <select id="getGoodstypeById" resultType="com.zb.pojo.Goodstype">
+        select
+                gtid as gtid,
+                gtname as gtname
+        from goodstype
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getGoodstypeListByMap" resultType="com.zb.pojo.Goodstype" parameterType="java.util.Map">
+        select
+                gtid as gtid,
+                gtname as gtname
+        from goodstype
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="gtid != null and gtid!=''">
+                    and gtid=#{gtid}
+                </if>
+                <if test="gtname != null and gtname!=''">
+                    and gtname=#{gtname}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getGoodstypeCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from goodstype
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="gtid != null and gtid!=''">
+                    and gtid=#{gtid}
+                </if>
+                <if test="gtname != null and gtname!=''">
+                    and gtname=#{gtname}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertGoodstype" parameterType="com.zb.pojo.Goodstype">
+        insert into goodstype(
+                        gtid,
+                        gtname)
+        values(
+                     #{gtid},
+                    #{gtname})
+    </insert>
+
+    <update id="updateGoodstype" parameterType="com.zb.pojo.Goodstype">
+        update goodstype
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="gtid != null and gtid!=''">
+                            gtid=#{gtid},
+                        </if>
+                        <if test="gtname != null and gtname!=''">
+                            gtname=#{gtname}
+                        </if>
+        </trim>
+    </update>
+</mapper>
