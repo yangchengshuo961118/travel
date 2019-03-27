@@ -5,5 +5,5 @@ import com.zb.pojo.Hotel;
 import java.util.Map;
 
 public interface RpcHotelService {
-    public Page<Hotel> getHotelListByMap(Map<String,Object> map)throws Exception;
+    public Page<Hotel> getHotelListByMap( Map<String,Object> map)throws Exception;
 }
