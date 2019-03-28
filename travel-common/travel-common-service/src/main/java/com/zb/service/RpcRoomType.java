@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface RpcRoomType {
     public List<Roomtype> getRoomTypeList(Integer hotelId)throws Exception;
+    public Integer updateRoomNum(Integer id,Integer roomNum);
 }
