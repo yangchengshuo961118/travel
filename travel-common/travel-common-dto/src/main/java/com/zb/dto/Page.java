@@ -1,6 +1,7 @@
 
 package com.zb.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @date Sep 21, 2011
  *
  */
-public class Page<T> {
+public class Page<T> implements Serializable {
     //当前页数
     private Integer curPage;
     /**
