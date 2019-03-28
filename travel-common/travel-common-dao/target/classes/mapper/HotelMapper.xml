@@ -72,11 +72,13 @@
 
     <insert id="insertHotel" parameterType="com.zb.pojo.Hotel">
         insert into hotel(
+                         id,
                         hotelName,
                         hotelType,
                         imageId,
                         hotelContext)
         values(
+                     null,
                      #{hotelName},
                      #{hotelType},
                      #{imageId},
