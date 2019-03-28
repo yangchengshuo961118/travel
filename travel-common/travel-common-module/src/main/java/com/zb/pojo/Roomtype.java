@@ -15,6 +15,8 @@ public class Roomtype implements Serializable {
     private Integer roomNum;
     //
     private Integer imageId;
+    //
+    private Integer hotelId;
     //get set 方法
     public void setId (Integer  id){
         this.id=id;
@@ -45,5 +47,13 @@ public class Roomtype implements Serializable {
     }
     public  Integer getImageId(){
         return this.imageId;
+    }
+
+    public Integer getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
     }
 }
