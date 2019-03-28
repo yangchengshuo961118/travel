@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RoomtypeMapper {
 
-	public Roomtype getRoomtypeById(@Param(value = "id") Long id)throws Exception;
+	public Roomtype getRoomtypeById(@Param(value = "id") Integer id)throws Exception;
 
 	public List<Roomtype>	getRoomtypeListByMap(Map<String,Object> param)throws Exception;
 
