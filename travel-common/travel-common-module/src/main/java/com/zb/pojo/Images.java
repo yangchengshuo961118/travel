@@ -9,6 +9,8 @@ public class Images implements Serializable {
     private Integer id;
     //
     private String imagePath;
+    //
+    private Integer imageId;
     //get set 方法
     public void setId (Integer  id){
         this.id=id;
@@ -21,5 +23,13 @@ public class Images implements Serializable {
     }
     public  String getImagePath(){
         return this.imagePath;
+    }
+
+    public Integer getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
     }
 }

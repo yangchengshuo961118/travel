@@ -8,6 +8,7 @@
         select
                 id as id,
                 imagePath as imagePath
+                imageId as imageId
         from images
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -20,6 +21,7 @@
         select
                 id as id,
                 imagePath as imagePath
+                imageId as imageId
         from images
         <trim prefix="where" prefixOverrides="and | or">
                 <if test="id != null and id!=''">
@@ -28,6 +30,9 @@
                 <if test="imagePath != null and imagePath!=''">
                     and imagePath=#{imagePath}
                 </if>
+            <if test="imageId != null and imageId!=''">
+                and imageId=#{imageId}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
@@ -43,14 +48,21 @@
                 <if test="imagePath != null and imagePath!=''">
                     and imagePath=#{imagePath}
                 </if>
+            <if test="imageId != null and imageId!=''">
+                and imageId=#{imageId}
+            </if>
         </trim>
     </select>
 
     <insert id="insertImages" parameterType="com.zb.pojo.Images">
         insert into images(
-                        imagePath)
+        id,
+                        imagePath,
+                        imageId)
         values(
-                    #{imagePath})
+        null,
+                    #{imagePath},
+                    #{imageId})
     </insert>
 
     <update id="updateImages" parameterType="com.zb.pojo.Images">
@@ -59,6 +71,9 @@
                         <if test="imagePath != null and imagePath!=''">
                             imagePath=#{imagePath}
                         </if>
+            <if test="imageId != null and imageId!=''">
+                and imageId=#{imageId}
+            </if>
         </trim>
     </update>
 </mapper>
