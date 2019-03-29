@@ -6,11 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="maven-archiver (1)" />
-        <module name="maven-archiver (2)" />
-        <module name="maven-archiver (3)" />
-        <module name="maven-archiver (4)" />
-        <module name="maven-archiver (5)" />
         <module name="travel-common-dao" />
         <module name="travel-common-dto" />
         <module name="travel-common-module" />
@@ -18,5 +13,12 @@
         <module name="travel-common-util" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="maven-archiver (1)" target="1.5" />
+      <module name="maven-archiver (2)" target="1.5" />
+      <module name="maven-archiver (3)" target="1.5" />
+      <module name="maven-archiver (4)" target="1.5" />
+      <module name="maven-archiver (5)" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
