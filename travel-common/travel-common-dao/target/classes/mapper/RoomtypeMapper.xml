@@ -11,6 +11,7 @@
                 roomPrice as roomPrice,
                 roomNum as roomNum,
                 imageId as imageId
+        hotelId as hotelId
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -26,6 +27,7 @@
                 roomPrice as roomPrice,
                 roomNum as roomNum,
                 imageId as imageId
+                hotelId as hotelId
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
                 <if test="id != null and id!=''">
@@ -43,6 +45,9 @@
                 <if test="imageId != null and imageId!=''">
                     and imageId=#{imageId}
                 </if>
+            <if test="hotelId != null and hotelId!=''">
+                and hotelId=#{hotelId}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
@@ -67,20 +72,27 @@
                 <if test="imageId != null and imageId!=''">
                     and imageId=#{imageId}
                 </if>
+            <if test="hotelId != null and hotelId!=''">
+                and hotelId=#{hotelId}
+            </if>
         </trim>
     </select>
 
     <insert id="insertRoomtype" parameterType="com.zb.pojo.Roomtype">
         insert into roomtype(
+        id,
                         roomType,
                         roomPrice,
                         roomNum,
-                        imageId)
+                        imageId,
+                        hotelId)
         values(
+        null,
                      #{roomType},
                      #{roomPrice},
                      #{roomNum},
-                    #{imageId})
+                    #{imageId},
+                    #{hotelId})
     </insert>
 
     <update id="updateRoomtype" parameterType="com.zb.pojo.Roomtype">
@@ -97,6 +109,9 @@
                         </if>
                         <if test="imageId != null and imageId!=''">
                             imageId=#{imageId}
+                        </if>
+                        <if test="hotelId != null and hotelId!=''">
+                            and hotelId=#{hotelId}
                         </if>
         </trim>
     </update>

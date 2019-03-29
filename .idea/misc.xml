@@ -5,11 +5,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/travel-common/pom.xml" />
-        <option value="$PROJECT_DIR$/travel-common/travel-common-dao/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/travel-common/travel-common-dto/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/travel-common/travel-common-util/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/travel-common/travel-common-module/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/travel-common/travel-common-service/target/maven-archiver/pom.properties" />
       </list>
     </option>
   </component>
