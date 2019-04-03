@@ -3,6 +3,7 @@ C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\j
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\ImagesMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\ViewMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\RoomtypeMapper.java
+C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\HotelOrderMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\AdministratorMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\IndentMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\PictureMapper.java
@@ -16,6 +17,5 @@ C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\j
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\NewsinfoMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\HotelMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\ReserveMapper.java
-C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\CustomerinfoMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\NewstypeMapper.java
 C:\Users\Administrator\Desktop\travel\travel-common\travel-common-dao\src\main\java\com\zb\mapper\ShipcontactMapper.java

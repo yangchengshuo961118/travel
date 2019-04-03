@@ -5,18 +5,7 @@
 <mapper namespace="com.zb.mapper.ReserveMapper">
 
     <select id="getReserveById" resultType="com.zb.pojo.Reserve">
-        select
-                id as id,
-                name as name,
-                days as days,
-                guest as guest,
-                roomNumber as roomNumber,
-                roomType as roomType,
-                checkinDate as checkinDate,
-                checkoutDate as checkoutDate,
-                roomRate as roomRate,
-                cashPledge as cashPledge,
-                remark as remark
+        select *
         from reserve
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -26,18 +15,7 @@
     </select>
 
     <select id="getReserveListByMap" resultType="com.zb.pojo.Reserve" parameterType="java.util.Map">
-        select
-                id as id,
-                name as name,
-                days as days,
-                guest as guest,
-                roomNumber as roomNumber,
-                roomType as roomType,
-                checkinDate as checkinDate,
-                checkoutDate as checkoutDate,
-                roomRate as roomRate,
-                cashPledge as cashPledge,
-                remark as remark
+        select *
         from reserve
         <trim prefix="where" prefixOverrides="and | or">
                 <if test="id != null and id!=''">
@@ -51,9 +29,6 @@
                 </if>
                 <if test="guest != null and guest!=''">
                     and guest=#{guest}
-                </if>
-                <if test="roomNumber != null and roomNumber!=''">
-                    and roomNumber=#{roomNumber}
                 </if>
                 <if test="roomType != null and roomType!=''">
                     and roomType=#{roomType}
@@ -72,6 +47,18 @@
                 </if>
                 <if test="remark != null and remark!=''">
                     and remark=#{remark}
+                </if>
+                <if test="phone != null and phone!=''">
+                    and phone=#{phone}
+                </if>
+                <if test="card != null and card!=''">
+                    and card=#{card}
+                </if>
+                <if test="email != null and email!=''">
+                    and email=#{email}
+                </if>
+                <if test="status != null and status!=''">
+                    and status=#{status}
                 </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
@@ -94,9 +81,6 @@
                 <if test="guest != null and guest!=''">
                     and guest=#{guest}
                 </if>
-                <if test="roomNumber != null and roomNumber!=''">
-                    and roomNumber=#{roomNumber}
-                </if>
                 <if test="roomType != null and roomType!=''">
                     and roomType=#{roomType}
                 </if>
@@ -115,32 +99,54 @@
                 <if test="remark != null and remark!=''">
                     and remark=#{remark}
                 </if>
+                <if test="phone != null and phone!=''">
+                    and phone=#{phone}
+                </if>
+                <if test="card != null and card!=''">
+                    and card=#{card}
+                </if>
+                <if test="email != null and email!=''">
+                    and email=#{email}
+                </if>
+                <if test="status != null and status!=''">
+                    and status=#{status}
+                </if>
         </trim>
     </select>
 
     <insert id="insertReserve" parameterType="com.zb.pojo.Reserve">
         insert into reserve(
+                        id,
                         name,
                         days,
                         guest,
-                        roomNumber,
                         roomType,
                         checkinDate,
                         checkoutDate,
                         roomRate,
                         cashPledge,
-                        remark)
+                        remark,
+                        card,
+                        phone,
+                        status,
+                        email
+                        )
         values(
+                     #{id},
                      #{name},
                      #{days},
                      #{guest},
-                     #{roomNumber},
                      #{roomType},
                      #{checkinDate},
                      #{checkoutDate},
                      #{roomRate},
                      #{cashPledge},
-                    #{remark})
+                    #{remark},
+                    #{card},
+                    #{phone},
+                    #{status},
+                    #{email}
+                    )
     </insert>
 
     <update id="updateReserve" parameterType="com.zb.pojo.Reserve">
@@ -154,9 +160,6 @@
                         </if>
                         <if test="guest != null and guest!=''">
                             guest=#{guest},
-                        </if>
-                        <if test="roomNumber != null and roomNumber!=''">
-                            roomNumber=#{roomNumber},
                         </if>
                         <if test="roomType != null and roomType!=''">
                             roomType=#{roomType},
@@ -176,6 +179,23 @@
                         <if test="remark != null and remark!=''">
                             remark=#{remark}
                         </if>
+                        <if test="phone != null and phone!=''">
+                            and phone=#{phone}
+                        </if>
+                        <if test="card != null and card!=''">
+                            and card=#{card}
+                        </if>
+                        <if test="email != null and email!=''">
+                            and email=#{email}
+                        </if>
+                        <if test="status != null and status!=''">
+                            and status=#{status}
+                        </if>
         </trim>
+    </update>
+    <update id="updateStatusById" parameterType="com.zb.pojo.Reserve">
+        update reserve
+       set  status=#{status}
+       where id=#{id}
     </update>
 </mapper>

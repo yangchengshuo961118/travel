@@ -7,12 +7,12 @@
     <select id="getImagesById" resultType="com.zb.pojo.Images">
         select
                 id as id,
-                imagePath as imagePath
+                imagePath as imagePath,
                 imageId as imageId
         from images
         <trim prefix="where" prefixOverrides="and | or">
-            <if test="id != null">
-                and id=#{id}
+            <if test="imageId != null">
+                and imageId=#{imageId}
             </if>
         </trim>
     </select>
@@ -20,7 +20,7 @@
     <select id="getImagesListByMap" resultType="com.zb.pojo.Images" parameterType="java.util.Map">
         select
                 id as id,
-                imagePath as imagePath
+                imagePath as imagePath,
                 imageId as imageId
         from images
         <trim prefix="where" prefixOverrides="and | or">
@@ -76,4 +76,5 @@
             </if>
         </trim>
     </update>
+
 </mapper>

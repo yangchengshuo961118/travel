@@ -6,6 +6,7 @@ com\zb\pojo\Administrator.class
 com\zb\pojo\Customerinfo.class
 com\zb\pojo\Goodstype.class
 com\zb\pojo\Travelnotes.class
+com\zb\pojo\HotelOrder.class
 com\zb\pojo\Picture.class
 com\zb\pojo\Userinfo.class
 com\zb\pojo\View.class

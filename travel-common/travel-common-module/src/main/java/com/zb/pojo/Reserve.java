@@ -6,7 +6,7 @@ import java.util.Date;
 */
 public class Reserve implements Serializable {
     //
-    private Integer id;
+    private String id;
     //
     private String name;
     //
@@ -14,9 +14,7 @@ public class Reserve implements Serializable {
     //
     private Integer guest;
     //
-    private Integer roomNumber;
-    //
-    private Integer roomType;
+    private String roomType;
     //
     private String checkinDate;
     //
@@ -27,11 +25,20 @@ public class Reserve implements Serializable {
     private Double cashPledge;
     //
     private String remark;
+
+    private String card;
+
+    private String phone;
+
+    private Integer status;
+
+    private String email;
+
     //get set 方法
-    public void setId (Integer  id){
+    public void setId (String   id){
         this.id=id;
     }
-    public  Integer getId(){
+    public  String  getId(){
         return this.id;
     }
     public void setName (String  name){
@@ -52,16 +59,10 @@ public class Reserve implements Serializable {
     public  Integer getGuest(){
         return this.guest;
     }
-    public void setRoomNumber (Integer  roomNumber){
-        this.roomNumber=roomNumber;
-    }
-    public  Integer getRoomNumber(){
-        return this.roomNumber;
-    }
-    public void setRoomType (Integer  roomType){
+    public void setRoomType (String  roomType){
         this.roomType=roomType;
     }
-    public  Integer getRoomType(){
+    public  String getRoomType(){
         return this.roomType;
     }
     public void setCheckinDate (String  checkinDate){
@@ -93,5 +94,37 @@ public class Reserve implements Serializable {
     }
     public  String getRemark(){
         return this.remark;
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

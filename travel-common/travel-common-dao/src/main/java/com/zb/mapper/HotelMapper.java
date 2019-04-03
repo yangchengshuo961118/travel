@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HotelMapper {
 
-	public Hotel getHotelById(@Param(value = "id") Long id)throws Exception;
+	public Hotel getHotelById(@Param(value = "id") Integer id)throws Exception;
 
 	public List<Hotel>	getHotelListByMap(Map<String,Object> param)throws Exception;
 

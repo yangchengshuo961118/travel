@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ReserveMapper {
 
-	public Reserve getReserveById(@Param(value = "id") Long id)throws Exception;
+	public Reserve getReserveById(@Param(value = "id") String id)throws Exception;
 
 	public List<Reserve>	getReserveListByMap(Map<String,Object> param)throws Exception;
 
@@ -21,5 +21,7 @@ public interface ReserveMapper {
 	public Integer deleteReserveById(@Param(value = "id") Long id)throws Exception;
 
 	public Integer batchDeleteReserve(Map<String,List<String>> params);
+
+	public Integer updateStatusById(@Param(value = "status")Integer status,@Param(value = "id")String id);
 
 }

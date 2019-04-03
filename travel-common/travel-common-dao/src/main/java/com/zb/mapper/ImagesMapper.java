@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ImagesMapper {
 
-	public Images getImagesById(@Param(value = "id") Long id)throws Exception;
+	public Images getImagesById(@Param(value = "imageId") Integer imageId)throws Exception;
 
 	public List<Images>	getImagesListByMap(Map<String,Object> param)throws Exception;
 

@@ -10,7 +10,7 @@
                 roomType as roomType,
                 roomPrice as roomPrice,
                 roomNum as roomNum,
-                imageId as imageId
+                imageId as imageId,
         hotelId as hotelId
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
@@ -26,7 +26,7 @@
                 roomType as roomType,
                 roomPrice as roomPrice,
                 roomNum as roomNum,
-                imageId as imageId
+                imageId as imageId,
                 hotelId as hotelId
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">

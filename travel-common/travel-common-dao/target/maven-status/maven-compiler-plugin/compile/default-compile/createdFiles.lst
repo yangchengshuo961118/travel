@@ -6,8 +6,8 @@ com\zb\mapper\RoomMapper.class
 com\zb\mapper\ImagesMapper.class
 com\zb\mapper\NewscommentMapper.class
 com\zb\mapper\CollectMapper.class
+com\zb\mapper\HotelOrderMapper.class
 com\zb\mapper\HotelMapper.class
-com\zb\mapper\CustomerinfoMapper.class
 com\zb\mapper\RoomtypeMapper.class
 com\zb\mapper\CartMapper.class
 com\zb\mapper\NewsinfoMapper.class
