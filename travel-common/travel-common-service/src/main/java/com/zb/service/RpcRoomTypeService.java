@@ -11,4 +11,6 @@ public interface RpcRoomTypeService {
     public Integer updateRoomNum(Integer id,Integer roomNum) throws Exception;
     //根据id获取房间类型数据
     public Roomtype getRoomTypeByID(Integer id) throws Exception;
+
+
 }

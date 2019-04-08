@@ -17,6 +17,8 @@ public class Roomtype implements Serializable {
     private Integer imageId;
     //
     private Integer hotelId;
+    //剩余数量
+    private Integer residue;
     //get set 方法
     public void setId (Integer  id){
         this.id=id;
@@ -55,5 +57,13 @@ public class Roomtype implements Serializable {
 
     public void setHotelId(Integer hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public Integer getResidue() {
+        return residue;
+    }
+
+    public void setResidue(Integer residue) {
+        this.residue = residue;
     }
 }

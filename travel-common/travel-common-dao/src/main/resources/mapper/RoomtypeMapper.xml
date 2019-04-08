@@ -11,7 +11,8 @@
                 roomPrice as roomPrice,
                 roomNum as roomNum,
                 imageId as imageId,
-        hotelId as hotelId
+        hotelId as hotelId,
+        residue as residue
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -27,7 +28,8 @@
                 roomPrice as roomPrice,
                 roomNum as roomNum,
                 imageId as imageId,
-                hotelId as hotelId
+                hotelId as hotelId,
+        residue as residue
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
                 <if test="id != null and id!=''">
@@ -47,6 +49,9 @@
                 </if>
             <if test="hotelId != null and hotelId!=''">
                 and hotelId=#{hotelId}
+            </if>
+            <if test="residue != null and residue!=''">
+                and residue=#{residue}
             </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
@@ -75,6 +80,9 @@
             <if test="hotelId != null and hotelId!=''">
                 and hotelId=#{hotelId}
             </if>
+            <if test="residue != null and residue!=''">
+                and residue=#{residue}
+            </if>
         </trim>
     </select>
 
@@ -85,14 +93,16 @@
                         roomPrice,
                         roomNum,
                         imageId,
-                        hotelId)
+                        hotelId,
+                        residue)
         values(
         null,
                      #{roomType},
                      #{roomPrice},
                      #{roomNum},
                     #{imageId},
-                    #{hotelId})
+                    #{hotelId},
+                    #{residue})
     </insert>
 
     <update id="updateRoomtype" parameterType="com.zb.pojo.Roomtype">
@@ -108,11 +118,14 @@
                             roomNum=#{roomNum},
                         </if>
                         <if test="imageId != null and imageId!=''">
-                            imageId=#{imageId}
+                            imageId=#{imageId},
                         </if>
                         <if test="hotelId != null and hotelId!=''">
-                            and hotelId=#{hotelId}
+                            hotelId=#{hotelId},
                         </if>
+            <if test="residue!=null and residue!=''">
+                residue=#{residue}
+            </if>
         </trim>
     </update>
 </mapper>

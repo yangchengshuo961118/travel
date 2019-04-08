@@ -177,19 +177,19 @@
                             cashPledge=#{cashPledge},
                         </if>
                         <if test="remark != null and remark!=''">
-                            remark=#{remark}
+                             remark=#{remark},
                         </if>
                         <if test="phone != null and phone!=''">
-                            and phone=#{phone}
+                             phone=#{phone},
                         </if>
                         <if test="card != null and card!=''">
-                            and card=#{card}
+                             card=#{card},
                         </if>
                         <if test="email != null and email!=''">
-                            and email=#{email}
+                             email=#{email},
                         </if>
                         <if test="status != null and status!=''">
-                            and status=#{status}
+                            status=#{status}
                         </if>
         </trim>
     </update>
