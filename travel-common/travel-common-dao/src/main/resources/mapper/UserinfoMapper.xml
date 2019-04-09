@@ -18,8 +18,8 @@
                 integral as integral
         from userinfo
         <trim prefix="where" prefixOverrides="and | or">
-            <if test="id != null">
-                and id=#{id}
+            <if test="userId != null">
+                and userId=#{userId}
             </if>
         </trim>
     </select>
@@ -137,7 +137,7 @@
 
     <update id="updateUserinfo" parameterType="com.zb.pojo.Userinfo">
         update userinfo
-        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+        <trim prefix="set" suffixOverrides="," suffix="where userId=#{userId}">
                         <if test="userId != null and userId!=''">
                             userId=#{userId},
                         </if>
@@ -162,7 +162,7 @@
                         <if test="signature != null and signature!=''">
                             signature=#{signature},
                         </if>
-                        <if test="photo != null and photo!=''">
+                        <if test="photo!= null and photo!=''">
                             photo=#{photo},
                         </if>
                         <if test="integral != null and integral!=''">

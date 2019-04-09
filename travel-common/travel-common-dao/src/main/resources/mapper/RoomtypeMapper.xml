@@ -11,8 +11,8 @@
                 roomPrice as roomPrice,
                 roomNum as roomNum,
                 imageId as imageId,
-        hotelId as hotelId,
-        residue as residue
+                hotelId as hotelId,
+                residue as residue
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -29,7 +29,7 @@
                 roomNum as roomNum,
                 imageId as imageId,
                 hotelId as hotelId,
-        residue as residue
+                residue as residue
         from roomtype
         <trim prefix="where" prefixOverrides="and | or">
                 <if test="id != null and id!=''">
@@ -127,5 +127,9 @@
                 residue=#{residue}
             </if>
         </trim>
+    </update>
+    <update id="updateresidue">
+        update roomtype set residue=residue-1
+        where id=#{id}
     </update>
 </mapper>

@@ -8,18 +8,18 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserinfoMapper {
 
-	public Userinfo getUserinfoById(@Param(value = "id") Long id)throws Exception;
+	public Userinfo getUserinfoById(@Param(value = "userId") Integer userId)throws Exception;
 
-	public List<Userinfo>	getUserinfoListByMap(Map<String,Object> param)throws Exception;
+	public List<Userinfo>	getUserinfoListByMap(Map<String, Object> param)throws Exception;
 
-	public Integer getUserinfoCountByMap(Map<String,Object> param)throws Exception;
+	public Integer getUserinfoCountByMap(Map<String, Object> param)throws Exception;
 
 	public Integer insertUserinfo(Userinfo userinfo)throws Exception;
 
 	public Integer updateUserinfo(Userinfo userinfo)throws Exception;
 
-	public Integer deleteUserinfoById(@Param(value = "id") Long id)throws Exception;
+	public Integer deleteUserinfoById(@Param(value = "userId") Integer userId)throws Exception;
 
-	public Integer batchDeleteUserinfo(Map<String,List<String>> params);
+	public Integer batchDeleteUserinfo(Map<String, List<String>> params);
 
 }

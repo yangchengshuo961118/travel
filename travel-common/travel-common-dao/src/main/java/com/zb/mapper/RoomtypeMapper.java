@@ -21,5 +21,5 @@ public interface RoomtypeMapper {
 	public Integer deleteRoomtypeById(@Param(value = "id") Long id)throws Exception;
 
 	public Integer batchDeleteRoomtype(Map<String,List<String>> params);
-
+	public Integer updateresidue(@Param("id") Integer id);
 }

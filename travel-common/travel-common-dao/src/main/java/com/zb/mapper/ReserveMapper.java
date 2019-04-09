@@ -23,5 +23,5 @@ public interface ReserveMapper {
 	public Integer batchDeleteReserve(Map<String,List<String>> params);
 
 	public Integer updateStatusById(@Param(value = "status")Integer status,@Param(value = "id")String id);
-
+	public List<Reserve> getReserveByPhone(@Param("phone") String phone);
 }

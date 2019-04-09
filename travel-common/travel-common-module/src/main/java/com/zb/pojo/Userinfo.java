@@ -8,13 +8,13 @@ public class Userinfo implements Serializable {
     //
     private Integer userId;
     //
-    private Integer phone;
+    private String phone;
     //
     private String password;
     //
     private String userName;
     //
-    private Integer gender;
+    private String gender;
     //
     private String address;
     //
@@ -32,12 +32,15 @@ public class Userinfo implements Serializable {
     public  Integer getUserId(){
         return this.userId;
     }
-    public void setPhone (Integer  phone){
-        this.phone=phone;
+
+    public String getPhone() {
+        return phone;
     }
-    public  Integer getPhone(){
-        return this.phone;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
+
     public void setPassword (String  password){
         this.password=password;
     }
@@ -50,13 +53,16 @@ public class Userinfo implements Serializable {
     public  String getUserName(){
         return this.userName;
     }
-    public void setGender (Integer  gender){
-        this.gender=gender;
+
+    public String getGender() {
+        return gender;
     }
-    public  Integer getGender(){
-        return this.gender;
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
-    public void setAddress (String  address){
+
+    public void setAddress (String address){
         this.address=address;
     }
     public  String getAddress(){
